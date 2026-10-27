@@ -1,0 +1,20 @@
+# Changelog
+
+All notable changes to this skill are documented here. Format based on Keep a Changelog; versioning is semantic.
+
+## [0.1.0] - 2026-10-27
+
+### Added
+- OpenCode-first install paths and `npx skills` instructions.
+- Claude Code plugin manifests (`.claude-plugin/`) and marketplace install path.
+- `scripts/package.sh` release archives and `scripts/validate.sh`.
+- GitHub Actions validation for Agent Skills frontmatter and manifests.
+- SKILL.md: the interview loop protocol (modes, batches, answer processing, decision statuses, completeness meter, termination and escapes, drafting self-audit, review loop, freeze gate, condensed error handling).
+- `references/question-taxonomy.md`: ten concern groups with fixed meter weights, question patterns per group, meter computation procedure, non-software adaptation rule.
+- `references/expert-defaults.md`: default construction rules, DELEGATED / INFERRED / INHERITED handling, sloppy-affirmation policy, mid-loop recommendation policy, question hygiene.
+- `references/spec-template.md`: the fillable normative spec structure with per-section guidance and the `NOTE:` review-marker convention.
+- README, LICENSE (MIT), CHANGELOG.
+- Self-hosted case study: the skill specified itself in 3 rounds and 60 questions before shipping (see README).
+
+### Changed
+- Installable skill lives at `skills/artifact-spec/`; references are tracked and ship with every install archive.

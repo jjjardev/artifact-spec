@@ -1,0 +1,18 @@
+{
+  "name": "artifact-spec",
+  "displayName": "Artifact Spec",
+  "version": "0.1.0",
+  "description": "Turn a seed idea into a decision-complete, frozen specification through forced-choice interview rounds.",
+  "author": {
+    "name": "jjjardev"
+  },
+  "homepage": "https://github.com/jjjardev/artifact-spec",
+  "repository": "https://github.com/jjjardev/artifact-spec",
+  "license": "MIT",
+  "keywords": [
+    "spec",
+    "requirements",
+    "planning",
+    "agent-skills"
+  ]
+}

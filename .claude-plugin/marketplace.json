@@ -1,0 +1,14 @@
+{
+  "name": "artifact-spec",
+  "description": "Spec-first interview skill for Agent Skills hosts.",
+  "owner": {
+    "name": "jjjardev"
+  },
+  "plugins": [
+    {
+      "name": "artifact-spec",
+      "source": "./",
+      "description": "Turn a seed idea into a decision-complete, frozen specification."
+    }
+  ]
+}
