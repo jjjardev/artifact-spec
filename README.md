@@ -38,7 +38,11 @@ The design principles:
 
 ## Install
 
-The installable skill lives at `skills/artifact-spec/`: `SKILL.md`, `references/`, and nothing else. The repo root holds the README, license, self-hosted spec, plugin manifests, and release scripts. Install the inner folder, not the repo root.
+The installable skill lives at `skills/artifact-spec/`: `SKILL.md`, `references/`, and nothing else. The repo root holds the README, license, self-hosted spec, chat prompt, plugin manifests, and release scripts. Install the inner folder, not the repo root.
+
+### Chat AI (no install)
+
+For a single-file prompt that works in any chat AI, use [`artifact-spec-chat.prompt.md`](artifact-spec-chat.prompt.md). Paste everything below the divider as your first message, replace the `SEED:` line with your idea, and answer the rounds. A file system is optional.
 
 ### OpenCode (primary)
 

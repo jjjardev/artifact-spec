@@ -2,6 +2,19 @@
 
 All notable changes to this skill are documented here. Format based on Keep a Changelog; versioning is semantic.
 
+## [0.1.1] - 2026-10-28
+
+### Added
+- `artifact-spec-chat.prompt.md`: standalone, no-install chat edition for any chat AI, with optional file access and a resumable `STATE BLOCK`.
+- README: install-free Chat AI path.
+- Release archives now include the chat prompt.
+
+### Fixed
+- Pure preference questions no longer require an expert default and cannot be delegated.
+- Sloppy affirmations confirm only a single visible default; ambiguous batches ask.
+- `INHERITED` now covers derived concern-group tables, matching `question-taxonomy.md`.
+- Chat and skill decision statuses, delegation rules, and the completeness meter are aligned.
+
 ## [0.1.0] - 2026-10-27
 
 ### Added

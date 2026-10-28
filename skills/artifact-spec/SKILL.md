@@ -5,7 +5,7 @@ license: MIT
 compatibility: OpenCode-first; also works in Claude Code, Codex, Cursor, and any Agent Skills host. Requires file read/write; no network.
 metadata:
   author: jjjardev
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # artifact-spec
@@ -50,7 +50,7 @@ Input is conversational only. If invoked with no seed and no document, ask for t
 ### Batches
 
 - Each round presents 15 to 30 questions. Round 1 SHOULD approach 30 and MUST front-load the highest blast-radius decisions (the ones that constrain later ones). Later batches SHOULD shrink as the fixpoint approaches.
-- Every question is forced-choice: 2 to 4 lettered options, exactly one marked **[expert default]**.
+- Every decision question is forced-choice: 2 to 4 lettered options, exactly one marked **[expert default]**. The only exception is a pure preference question (naming, color, taste): present neutral options and mark no default; log the Oracle's choice as DECIDED. Pure taste cannot be DELEGATED.
 - Give a one-line rationale ONLY when the question is non-obvious or when the default interacts with an earlier answer. Otherwise ask bare.
 - Group questions by concern using `references/question-taxonomy.md`, which also holds the meter weights. Derive concern groups from the artifact type if it is not a software project.
 - NEVER ask a question the seed or prior answers already resolve. Resolve it silently and log `INFERRED` with the evidence cited.
@@ -60,7 +60,7 @@ Input is conversational only. If invoked with no seed and no document, ask for t
 
 After each round, in this order:
 
-1. **Parse answers.** Sloppy affirmations ("yeah", "sure") confirm the expert default; log them as such. The Oracle may append inline notes to any answer; capture the note text verbatim in the decision entry.
+1. **Parse answers.** Sloppy affirmations ("yeah", "sure") confirm the expert default when one question with a default is in context; if no default or multiple defaults were on screen, ask. The Oracle may append inline notes to any answer; capture the note text verbatim in the decision entry.
 2. **Detect contradictions** between answers (including prior rounds). If found: HALT. Surface each contradiction, force a resolution, log the resolution as a new decision. Do not generate the next batch until resolved.
 3. **Absorb volunteered requirements.** New ideas the Oracle drops mid-loop get logged and spawn follow-up questions in the next batch.
 4. **Append decisions** to `./spec/decisions.md` immediately. Every round ends persisted. If the Oracle quits, nothing is lost.
@@ -69,9 +69,9 @@ After each round, in this order:
 ### Decision Statuses
 
 - `DECIDED` — Oracle chose an option.
-- `DELEGATED` — Oracle accepted the expert default or said "whatever is best". MUST record the chosen option and the one-line rationale.
+- `DELEGATED` — Oracle accepted the expert default or said "whatever is best" on a decision question. MUST record the chosen option and the one-line rationale. Pure taste cannot be delegated.
 - `INFERRED` — resolved from seed or conversation evidence. MUST cite the evidence.
-- `INHERITED` — imported from standing constraint files.
+- `INHERITED` — imported from standing constraint files, existing repo documents, or a derived concern-group table. MUST cite the source.
 - `OPEN` — unresolved. Every OPEN decision also appears in `open-questions.md`.
 
 Entry format (append-only, numbers are immutable):
@@ -135,7 +135,7 @@ After FROZEN, the skill's work is done. Do not implement. Do not scaffold. Stop.
 | Collision with existing `./spec/` | Resume if resumable, else ask overwrite / spec-v2/ / abort |
 | Contradiction between answers | Halt-and-resolve before next batch |
 | Contradiction at draft time | OPEN, never resolve |
-| Sloppy affirmation | Confirm expert default, log |
+| Sloppy affirmation | Confirm visible default, log; if none or several, ask |
 | Oversized document in gap-analyze | Distill to structured seed first |
 | Cap reached before fixpoint | Force draft, gaps become OPEN |
 | Freeze attempted with OPEN items | Require explicit recorded waiver |

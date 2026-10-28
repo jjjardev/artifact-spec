@@ -9,7 +9,7 @@ stage="$(mktemp -d)"
 trap 'rm -rf "$stage"' EXIT
 
 mkdir -p "$stage/$name" "$dist"
-cp "$skill/SKILL.md" "$root/README.md" "$root/LICENSE" "$root/CHANGELOG.md" "$stage/$name/"
+cp "$skill/SKILL.md" "$root/README.md" "$root/LICENSE" "$root/CHANGELOG.md" "$root/artifact-spec-chat.prompt.md" "$stage/$name/"
 cp -R "$skill/references" "$stage/$name/"
 
 rm -f "$dist/$name.skill" "$dist/$name.zip"

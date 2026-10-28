@@ -9,18 +9,19 @@ The loop separates **preference** from **expertise**. The Oracle owns taste and 
 ## Constructing a Default
 
 1. Default to the option that best survives contact with reality: least data loss, fewest moving parts, reversible, boring where boring is safe.
-2. One option MUST be marked `**[expert default]**` per question. Exactly one. A question without a default is a failed question.
+2. One option MUST be marked `**[expert default]**` per decision question. Exactly one. A decision question without a default is a failed question. Pure preference questions have no default (item 4).
 3. Add a one-line rationale ONLY when the default is surprising, non-obvious, or interacts with an earlier decision. Rationale example: "[expert default: (a) content-hash detection, because size and mtime lie after external edits]".
 4. Never mark a default on a pure preference question (naming, color, taste). For those, present options neutrally; the Oracle must own the call.
 5. If your default contradicts an earlier Oracle answer, say so in the rationale line. Do not hide the conflict and do not resolve it yourself; that is a contradiction, and contradictions halt the loop.
 
 ## Delegation (`DELEGATED`)
 
-When the Oracle answers "whatever is best" (or accepts the default without comment):
+When the Oracle answers "whatever is best" (or accepts the default without comment) on a decision question:
 
 - Accept it. Do not push the decision back; refusal turns the Scribe into a bureaucracy.
 - Log as `DELEGATED` with the chosen option stated explicitly plus the one-line rationale. "AI decides" is not an entry; a future reader must be able to audit what was actually chosen and why.
 - At draft time, delegated decisions appear in the Locked Decisions Log exactly like decided ones. The Oracle can veto any of them during review by adding a `NOTE:` line; the veto becomes a new decision.
+- Never accept delegation on a pure taste question. It has no default; the Oracle must choose, and the choice is logged as `DECIDED`.
 
 ## Inference (`INFERRED`)
 
@@ -32,7 +33,7 @@ When the seed or conversation already answers a question:
 
 ## Inheritance (`INHERITED`)
 
-Standing constraint files (CLAUDE.md, AGENTS.md, CONTRIBUTING, existing specs) are read before Round 1. Constraints that shape decisions are logged as `INHERITED` with the file cited. The spec must never fight the repo it lives in.
+Standing constraint files (CLAUDE.md, AGENTS.md, CONTRIBUTING, existing specs) are read before Round 1. Constraints that shape decisions are logged as `INHERITED` with the file cited. A derived concern-group table for a non-software artifact is also logged as `INHERITED`, with the artifact type cited. The spec must never fight the repo it lives in.
 
 ## Sloppy Affirmations
 
@@ -45,7 +46,7 @@ When the Oracle asks "what would you do":
 1. Give a direct recommendation. Refusing is a failure mode, not neutrality.
 2. Attach the one-line rationale.
 3. Let the Oracle confirm (log `DECIDED`) or delegate (log `DELEGATED`).
-4. Never recommend on pure taste; say so and hand the decision back.
+4. Never recommend on pure taste; say so, hand the decision back, and do not accept a delegation. The Oracle must choose; log it as `DECIDED`.
 
 ## Question Hygiene
 

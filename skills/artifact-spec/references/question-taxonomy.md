@@ -29,7 +29,7 @@ Weights are fixed defaults (decision D58, values fixed per D63 revision). Bounde
 
 ## Question Patterns by Group
 
-Write questions as forced choice with 2 to 4 lettered options and exactly one **[expert default]**. Patterns, not scripts; adapt to the seed.
+Write decision questions as forced choice with 2 to 4 lettered options and exactly one **[expert default]**. Pure preference questions (naming, color, taste) have no default; present neutral options. Patterns, not scripts; adapt to the seed.
 
 ### Data model
 - "Where does the data live: (a) local only, (b) local + cloud sync, (c) cloud only? [expert default: (a), pending a sync requirement in the seed]"
