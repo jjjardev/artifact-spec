@@ -2,6 +2,12 @@
 
 All notable changes to this skill are documented here. Format based on Keep a Changelog; versioning is semantic.
 
+## [0.1.2] - 2026-10-28
+
+### Added
+- `scripts/verify-outputs.sh`: validates the three skill outputs (`decisions.md`, `spec.md`, `open-questions.md`) against spec sections 2.1-2.3 — header fields, decision numbering and statuses, section order, normative traceability, open-question format, freeze rules.
+- README: output verification step.
+
 ## [0.1.1] - 2026-10-28
 
 ### Added

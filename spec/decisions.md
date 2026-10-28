@@ -3,7 +3,7 @@
 Project: artifact-spec (a SKILL.md agent skill that produces spec.md)
 Author: jjjardev
 Started: 2026-10-27
-Skill version: 0.1.1
+Skill version: 0.1.2
 Revision: 3
 Status: FROZEN (Round 3 fixpoint; post-freeze corrections D66-D73)
 Completeness history: R1 63% → R2 90% → R3 97% (fixpoint)

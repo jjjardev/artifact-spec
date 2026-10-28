@@ -13,7 +13,7 @@ The fillable structure for `./spec/spec.md`. Follow section order exactly (decis
 | Status | DRAFT (revision 1) |
 | Decisions | <count> (D1 to D<nn>), <k> OPEN |
 | Completeness at draft | <nn>% |
-| Skill version | 0.1.1 |
+| Skill version | 0.1.2 |
 | Author | <Oracle handle> |
 
 <!-- Status lifecycle: DRAFT → REVIEW → FROZEN. Revision counter increments on each review pass. -->

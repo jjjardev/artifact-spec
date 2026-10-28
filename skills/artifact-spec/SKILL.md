@@ -5,7 +5,7 @@ license: MIT
 compatibility: OpenCode-first; also works in Claude Code, Codex, Cursor, and any Agent Skills host. Requires file read/write; no network.
 metadata:
   author: jjjardev
-  version: 0.1.1
+  version: 0.1.2
 ---
 
 # artifact-spec

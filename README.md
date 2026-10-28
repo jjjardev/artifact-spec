@@ -129,6 +129,12 @@ Build release archives:
 ./scripts/package.sh
 ```
 
+Verify a run's three outputs against spec sections 2.1 to 2.3 (headers, decision numbering and statuses, section order, normative traceability, open-question format, freeze rules):
+
+```bash
+./scripts/verify-outputs.sh spec
+```
+
 This writes `dist/artifact-spec.skill` with `SKILL.md` at the archive root (Claude.ai upload format) and `dist/artifact-spec.zip` with an `artifact-spec/` folder at the root (manual install archive).
 
 ## The Three Files It Produces

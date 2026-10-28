@@ -8,7 +8,7 @@
 | Decisions | 73 (D1 to D73), 0 OPEN |
 | Completeness at draft | 97% |
 | Freeze record | OQ-1 and OQ-2 waived/resolved by D64 and D65; post-freeze corrections D66 to D73 |
-| Skill version | 0.1.1 |
+| Skill version | 0.1.2 |
 | Author | jjjardev |
 
 ## 0. How to Read This Spec (D56, D43, D54)
