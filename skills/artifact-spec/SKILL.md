@@ -49,7 +49,7 @@ Input is conversational only. If invoked with no seed and no document, ask for t
 
 ### Batches
 
-- Each round presents 15 to 30 questions. Round 1 SHOULD approach 30 and MUST front-load the highest blast-radius decisions (the ones that constrain later ones). Later batches SHOULD shrink as the fixpoint approaches.
+- Each round presents 15 to 30 questions; the final round MAY be shorter when fewer than 15 questions remain before fixpoint. Round 1 SHOULD approach 30 and MUST front-load the highest blast-radius decisions (the ones that constrain later ones). Later batches SHOULD shrink as the fixpoint approaches.
 - Every decision question is forced-choice: 2 to 4 lettered options, exactly one marked **[expert default]**. The only exception is a pure preference question (naming, color, taste): present neutral options and mark no default; log the Oracle's choice as DECIDED. Pure taste cannot be DELEGATED.
 - Give a one-line rationale ONLY when the question is non-obvious or when the default interacts with an earlier answer. Otherwise ask bare.
 - Group questions by concern using `references/question-taxonomy.md`, which also holds the meter weights. Derive concern groups from the artifact type if it is not a software project.
@@ -60,7 +60,7 @@ Input is conversational only. If invoked with no seed and no document, ask for t
 
 After each round, in this order:
 
-1. **Parse answers.** Sloppy affirmations ("yeah", "sure") confirm the expert default when one question with a default is in context; if no default or multiple defaults were on screen, ask. The Oracle may append inline notes to any answer; capture the note text verbatim in the decision entry.
+1. **Parse answers.** Sloppy affirmations ("yeah", "sure") confirm the expert default when one question with a default is in context; if no default or multiple defaults were on screen, ask. A skipped question becomes OPEN, is re-asked once in the next batch, and remains OPEN if skipped again. The Oracle may append inline notes to any answer; capture the note text verbatim in the decision entry.
 2. **Detect contradictions** between answers (including prior rounds). If found: HALT. Surface each contradiction, force a resolution, log the resolution as a new decision. Do not generate the next batch until resolved.
 3. **Absorb volunteered requirements.** New ideas the Oracle drops mid-loop get logged and spawn follow-up questions in the next batch.
 4. **Append decisions** to `./spec/decisions.md` immediately. Every round ends persisted. If the Oracle quits, nothing is lost.
@@ -88,7 +88,7 @@ Compute after every round:
 
 `Context completeness: <nn>%`
 
-The percentage is structured, not a guess: the sum of weights of resolved concern areas over the sum of weights of all identified concern areas, using the fixed weights in `references/question-taxonomy.md`. Never adjust the meter to influence the Oracle; its honesty is the product.
+The percentage is structured, not a guess: the sum of weights of resolved concern areas over the sum of weights of all identified concern areas, using the fixed weights in `references/question-taxonomy.md`. An area counts as resolved only when every question raised in it has a decision and no OPEN marker references it. If no question was needed, log why the area is not applicable; silence does not resolve it. Never adjust the meter to influence the Oracle; its honesty is the product.
 
 Display the line after each round and append it to the completeness history in the `decisions.md` header.
 
@@ -136,6 +136,8 @@ After FROZEN, the skill's work is done. Do not implement. Do not scaffold. Stop.
 | Contradiction between answers | Halt-and-resolve before next batch |
 | Contradiction at draft time | OPEN, never resolve |
 | Sloppy affirmation | Confirm visible default, log; if none or several, ask |
+| Question skipped | Mark OPEN, re-ask once next batch, keep OPEN if skipped again |
+| Concern area with no question | Log why not applicable, or leave unresolved |
 | Oversized document in gap-analyze | Distill to structured seed first |
 | Cap reached before fixpoint | Force draft, gaps become OPEN |
 | Freeze attempted with OPEN items | Require explicit recorded waiver |

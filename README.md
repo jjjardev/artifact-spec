@@ -6,8 +6,9 @@ A SKILL.md agent skill that turns a seed idea into a decision-complete, frozen s
 "I really want to create X for platform Y..."
         │
         ▼
-  Interview loop          15-30 forced-choice questions per round,
-  (3-6 rounds)            expert defaults, contradictions halt the loop,
+  Interview loop          15-30 forced-choice questions per round
+                          (short final round), expert defaults,
+                          contradictions halt the loop,
                           context completeness: 63% ... 90% ... 97%
         │
         ▼
@@ -144,7 +145,7 @@ Add a line beginning `NOTE:` under any statement in `spec.md`. The skill enumera
 
 ## Case Study
 
-The skill specified itself. Version 0.1.0's specification was produced by this exact loop in a single session: 60 answered questions across 3 rounds (20 / 30 / 10), completeness tracked 63% to 90% to 97% at the fixpoint, 65 logged decisions at freeze (69 after the v0.1.1 corrections), 2 OPEN items resolved or waived at freeze. The self-hosted case study is the evidence base for the method's claims about human time and decision volume.
+The skill specified itself. Version 0.1.0's specification was produced by this exact loop in a single session: 60 answered questions across 3 rounds (20 / 30 / 10), completeness tracked 63% to 90% to 97% at the fixpoint, 65 logged decisions at freeze (73 after the v0.1.1 corrections), 2 OPEN items resolved or waived at freeze. The self-hosted case study is the evidence base for the method's claims about human time and decision volume.
 
 ## Scope
 

@@ -22,7 +22,7 @@ Weights are fixed defaults (decision D58, values fixed per D63 revision). Bounde
 ## Meter Computation
 
 1. Identify every concern area that applies to this artifact (usually all ten for software).
-2. Each area is resolved when every question raised in it has a DECIDED, DELEGATED, INFERRED, or INHERITED decision, and no OPEN markers reference it.
+2. Each area is resolved when every question raised in it has a DECIDED, DELEGATED, INFERRED, or INHERITED decision, and no OPEN markers reference it. If no question was needed, log why the area is not applicable; silence does not resolve it.
 3. `completeness = sum(weights of resolved areas) / sum(weights of all identified areas)`, rounded to whole percent.
 4. Display: `Context completeness: <nn>%`. Optionally append the one or two largest unresolved areas in parentheses.
 5. Stamp the percentage into the completeness history in `decisions.md`.

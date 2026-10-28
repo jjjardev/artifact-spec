@@ -36,7 +36,7 @@ If both a seed and a resume payload are present, ask which one to use before pro
 
 - Present exactly one batch per turn, then wait for answers.
 - Number questions continuously across rounds: Q1, Q2, ... Decisions cite `Q<n>` and round `R<r>`.
-- Each round presents 15 to 30 questions. Round 1 approaches 30 and MUST front-load the highest blast-radius decisions. Later rounds shrink as the fixpoint approaches.
+- Each round presents 15 to 30 questions; the final round MAY be shorter when fewer than 15 questions remain before fixpoint. Round 1 approaches 30 and MUST front-load the highest blast-radius decisions. Later rounds shrink as the fixpoint approaches.
 - Every decision question is forced choice: 2 to 4 lettered options with exactly one marked **[expert default]**. The only exception is a pure preference question (naming, color, taste): present neutral options and mark no default; log the Oracle's choice as DECIDED. Pure taste cannot be DELEGATED.
 - One-line rationale ONLY when the default is surprising, non-obvious, or interacts with an earlier answer.
 - Defaults pick the option that best survives contact with reality: least data loss, fewest moving parts, reversible, boring where boring is safe.

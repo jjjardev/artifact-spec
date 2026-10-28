@@ -5,7 +5,7 @@ Author: jjjardev
 Started: 2026-10-27
 Skill version: 0.1.1
 Revision: 3
-Status: FROZEN (Round 3 fixpoint; post-freeze corrections D66-D69)
+Status: FROZEN (Round 3 fixpoint; post-freeze corrections D66-D73)
 Completeness history: R1 63% → R2 90% → R3 97% (fixpoint)
 
 Format: `D<nn> [STATUS] decision — source: Q<n>, round <r>`
@@ -99,5 +99,9 @@ Statuses: DECIDED (Oracle chose), DELEGATED (Oracle accepted the expert default 
 - D67 [DECIDED] Pure taste cannot be DELEGATED; on a recommendation request, the Scribe hands the decision back instead of recommending or accepting delegation. — clarifies D8, D43; source: Oracle, post-freeze correction
 - D68 [DECIDED] Sloppy affirmations confirm only a single visible expert default; if no default or multiple defaults were on screen, the Scribe MUST ask. — clarifies D41; source: Oracle, post-freeze correction
 - D69 [DECIDED] INHERITED covers standing constraints, existing repo documents, and derived concern-group tables, with the source cited. — clarifies D45; source: Oracle, post-freeze correction
+- D70 [DECIDED] Batches stay 15 to 30 questions, except the final round MAY be shorter when fewer than 15 questions remain before fixpoint; the 6-round and 90-question caps still apply. — clarifies D5; source: Oracle, post-freeze correction
+- D71 [DECIDED] v1 drops D59's `assets/` requirement; the release archive is the installable skill folder plus README, LICENSE, CHANGELOG, and the chat prompt. — clarifies D59; source: Oracle, post-freeze correction
+- D72 [DECIDED] NG-4's marketplace-listing ban covers paid/public listing copy; `.claude-plugin` manifests and plugin-install instructions are distribution metadata, not listing materials. — clarifies D50; source: Oracle, post-freeze correction
+- D73 [DECIDED] A skipped question becomes OPEN, is re-asked once in the next batch, then remains OPEN if skipped again; an identified concern area with no question MUST be logged as not applicable with a reason or remain unresolved. — clarifies D23, D25, D40; source: Oracle, post-freeze correction
 
-Status: FROZEN. Spec revision 3. Zero OPEN items. Post-freeze corrections D66-D69 applied.
+Status: FROZEN. Spec revision 3. Zero OPEN items. Post-freeze corrections D66-D73 applied.

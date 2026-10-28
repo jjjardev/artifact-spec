@@ -5,9 +5,9 @@
 | Artifact | `artifact-spec`, an Agent Skill (SKILL.md folder) |
 | Date | 2026-10-28 |
 | Status | FROZEN (revision 3) |
-| Decisions | 69 (D1 to D69), 0 OPEN |
+| Decisions | 73 (D1 to D73), 0 OPEN |
 | Completeness at draft | 97% |
-| Freeze record | OQ-1 and OQ-2 waived/resolved by D64 and D65; post-freeze corrections D66 to D69 |
+| Freeze record | OQ-1 and OQ-2 waived/resolved by D64 and D65; post-freeze corrections D66 to D73 |
 | Skill version | 0.1.1 |
 | Author | jjjardev |
 
@@ -33,7 +33,7 @@ This spec is written for its primary consumer: the AI agent (the **Builder**) th
 - NG-1. The skill MUST NOT generate, scaffold, or deploy implementation code. It stops at the frozen spec. (D2)
 - NG-2. The skill MUST NOT bundle with, or depend on, any other skill. (D18)
 - NG-3. The skill MUST NOT cite any external methodology as provenance; it is presented as original work by jjjardev. (D14, D15)
-- NG-4. v1 MUST NOT include marketplace listing materials; the v1 goal is a functioning skill only. (D50)
+- NG-4. v1 MUST NOT include paid or public marketplace listing copy; `.claude-plugin` manifests and plugin-install instructions are distribution metadata, not listing materials. The v1 goal is a functioning skill only. (D50, D72)
 - NG-5. The skill MUST NOT invent decisions: drafting-time contradictions and gaps become OPEN markers, never silent resolutions. (D40)
 
 NOTE: NG-5 also forbids the Scribe from re-ordering Oracle decisions to make the spec more coherent. Coherence is achieved through the review loop, not through editing history. — Oracle, R3 context
@@ -88,13 +88,13 @@ List of unresolved items, format: `OQ-<n> [area] question — why it blocks`. Ev
 
 3.3. If CLAUDE.md, AGENTS.md, equivalent standing-constraint files, or existing repo documents exist in the working directory, the skill MUST read them before the first batch and record their effect as INHERITED decisions (D45, D69).
 
-3.4. Each round MUST present 15 to 30 questions, with earlier rounds weighted toward the highest blast-radius decisions (D5, D33). Round 1 SHOULD approach 30; later batches SHOULD shrink as the fixpoint approaches (D5).
+3.4. Each round MUST present 15 to 30 questions, except the final round MAY be shorter when fewer than 15 questions remain before fixpoint (D5, D33, D70). Earlier rounds MUST be weighted toward the highest blast-radius decisions; Round 1 SHOULD approach 30, and later batches SHOULD shrink as the fixpoint approaches (D5).
 
 3.5. Every decision question MUST be forced-choice: 2 to 4 lettered options with exactly one marked expert default (D31, D66). Pure preference questions (naming, color, taste) MUST present neutral options with no default; the Oracle's choice is logged as DECIDED (D66). The expert default MAY carry a one-line rationale when the question is non-obvious or the default interacts with an earlier answer (D9). Questions the seed already answers MUST NOT be asked; they are logged as INFERRED with cited evidence (D34).
 
 3.6. Questions MUST be grouped by concern (D32), with group composition derived from the artifact type per the adaptation rule (D3), and ordered by blast radius within the round (D33). For a non-software artifact, the derived concern-group table MUST be logged as INHERITED with the artifact type cited (D69).
 
-3.7. After each round, the skill MUST: process answers (sloppy affirmations confirm a single visible expert default; if no default or multiple defaults were on screen, the skill MUST ask, D41, D68; inline notes are captured verbatim, D31), resolve contradictions via halt-and-resolve before proceeding (D7), absorb volunteered new requirements and queue follow-up questions (D42), append all new decisions to decisions.md (D19), compute the completeness percentage (D23), and display the meter (D24).
+3.7. After each round, the skill MUST: process answers (sloppy affirmations confirm a single visible expert default; if no default or multiple defaults were on screen, the skill MUST ask, D41, D68; inline notes are captured verbatim, D31; a skipped question becomes OPEN, is re-asked once in the next batch, then remains OPEN if skipped again, D25, D40, D73), resolve contradictions via halt-and-resolve before proceeding (D7), absorb volunteered new requirements and queue follow-up questions (D42), append all new decisions to decisions.md (D19), compute the completeness percentage (D23), and display the meter (D24).
 
 3.8. Termination: the loop MUST stop when a full batch would contain only questions already answered or inferable from answers (question-fixpoint, D6), or at the hard caps of 6 rounds (D6) or 90 answered questions (D35), whichever comes first.
 
@@ -116,6 +116,8 @@ List of unresolved items, format: `OQ-<n> [area] question — why it blocks`. Ev
 
 4.3. The meter MUST NOT be adjusted to influence Oracle behavior; it is an estimate, and its honesty is the product (D23 rationale).
 
+4.4. An identified concern area counts as resolved only when every question raised in it has a DECIDED, DELEGATED, INFERRED, or INHERITED decision and no OPEN marker references it. If no question was needed, the skill MUST log why the area is not applicable; silence does not resolve it (D23, D73).
+
 ## 5. Error-Handling Matrix
 
 | Condition | Required behavior | Decision |
@@ -126,6 +128,8 @@ List of unresolved items, format: `OQ-<n> [area] question — why it blocks`. Ev
 | Contradiction between answers | Halt-and-resolve before next batch | D7 |
 | Contradiction at draft time | Emit OPEN, never resolve | D40 |
 | Sloppy affirmation | Confirm a single visible default and log; if none or several, ask | D41, D68 |
+| Question skipped | Mark OPEN, re-ask once in the next batch, then keep OPEN if skipped again | D25, D40, D73 |
+| Concern area with no question | Log why it is not applicable, or leave it unresolved | D23, D73 |
 | New requirement volunteered mid-loop | Absorb, log, spawn follow-ups | D42 |
 | Oversized document in gap-analyze | Distill to structured seed first | D44 |
 | Standing constraints or existing repo documents present | Honor, log INHERITED; derived concern-group tables are also INHERITED | D45, D69 |
@@ -135,7 +139,7 @@ List of unresolved items, format: `OQ-<n> [area] question — why it blocks`. Ev
 | Recommendation requested | Give one with rationale; Oracle confirms or delegates; pure taste is handed back | D43, D67 |
 | Invocation with no seed and no document | Ask for the seed; the idea MUST come from the Oracle | D30 |
 
-## 6. Architecture (D16, D20, D59)
+## 6. Architecture (D16, D20, D59, D71)
 
 6.1. The installable skill MUST be a single folder with `SKILL.md` at its root plus bundled references, per the open Agent Skills standard (D20). Layout:
 
@@ -148,7 +152,7 @@ artifact-spec/                  # installable skill folder
     └── spec-template.md        # the fillable spec structure with per-section guidance
 ```
 
-The release archive built by `scripts/package.sh` adds `README.md`, `LICENSE` (MIT, D47), `CHANGELOG.md` (semver history, D49), and `artifact-spec-chat.prompt.md` at the archive root.
+The release archive built by `scripts/package.sh` adds `README.md`, `LICENSE` (MIT, D47), `CHANGELOG.md` (semver history, D49), and `artifact-spec-chat.prompt.md` at the archive root. D71 drops D59's `assets/` requirement for v1.
 
 6.2. SKILL.md MUST stay under 500 lines; target approximately 300 (per Agent Skills authoring guideline; performance target PT-2). Heavy content lives in `references/`, which load only when the corresponding step needs them (D20 rationale).
 
@@ -158,7 +162,7 @@ The release archive built by `scripts/package.sh` adds `README.md`, `LICENSE` (M
 
 ## 7. Locked Decisions Log
 
-Full entries live in `./spec/decisions.md`. Index: D1 name `artifact-spec` · D2 scope stops before build · D3 software-first + adaptation rule · D4 gap-analyze mode · D5 adaptive 15-30 batches · D6 fixpoint termination, 6-round cap · D7 halt-and-resolve · D8 DELEGATED logging · D9 conditional rationale · D10 three output files · D11 fixed spec structure · D12 traceability · D13 write to ./spec/ · D14 original-work provenance · D15 jjjardev host · D16 self-contained · D17 free GitHub + $9 Agensi (listing deferred by D50) · D18 no bundling · D19 incremental persistence · D20 pure markdown cross-agent · D21 self-hosted case study · D22 name kept · D23 structured meter · D24 meter placement · D25 draft-now exit · D26 go-deeper adversarial mode · D27 trigger phrases · D28 resume · D29 collision prompt · D30 conversational input only · D31 forced choice + notes · D32 ten concern groups · D33 blast-radius ordering · D34 INFERRED logging · D35 90-question cap · D36 spec header · D37 RFC 2119 · D38 testable acceptance criteria · D39 self-audit · D40 drafting OPENs · D41 sloppy affirmations · D42 absorb new requirements · D43 Builder-first readership, AI revises · D44 distill large docs · D45 inherited constraints · D46 full frontmatter · D47 MIT · D48 two test runs · D49 semver · D50 listing deferred · D51 review loop in v1 · D52 inline easy-type notes · D53 note handling · D54 DRAFT/REVIEW/FROZEN + revision counter · D55 freeze gate · D56 reader's guide · D57 author jjjardev · D58 fixed meter weights · D59 repo-ready folder deliverable · D60 spec-first build order · D61 NOTE: line syntax · D62 WAIVED (branding) · D63 RESOLVED (meter weights) · D64 freeze waiver · D65 meter weights fixed · D66 pure preference exception · D67 no taste delegation · D68 ambiguous affirmations ask · D69 INHERITED expanded.
+Full entries live in `./spec/decisions.md`. Index: D1 name `artifact-spec` · D2 scope stops before build · D3 software-first + adaptation rule · D4 gap-analyze mode · D5 adaptive 15-30 batches, short final round allowed · D6 fixpoint termination, 6-round cap · D7 halt-and-resolve · D8 DELEGATED logging · D9 conditional rationale · D10 three output files · D11 fixed spec structure · D12 traceability · D13 write to ./spec/ · D14 original-work provenance · D15 jjjardev host · D16 self-contained · D17 free GitHub + $9 Agensi (listing deferred by D50) · D18 no bundling · D19 incremental persistence · D20 pure markdown cross-agent · D21 self-hosted case study · D22 name kept · D23 structured meter · D24 meter placement · D25 draft-now exit · D26 go-deeper adversarial mode · D27 trigger phrases · D28 resume · D29 collision prompt · D30 conversational input only · D31 forced choice + notes · D32 ten concern groups · D33 blast-radius ordering · D34 INFERRED logging · D35 90-question cap · D36 spec header · D37 RFC 2119 · D38 testable acceptance criteria · D39 self-audit · D40 drafting OPENs · D41 sloppy affirmations · D42 absorb new requirements · D43 Builder-first readership, AI revises · D44 distill large docs · D45 inherited constraints · D46 full frontmatter · D47 MIT · D48 two test runs · D49 semver · D50 listing deferred; plugin manifests allowed · D51 review loop in v1 · D52 inline easy-type notes · D53 note handling · D54 DRAFT/REVIEW/FROZEN + revision counter · D55 freeze gate · D56 reader's guide · D57 author jjjardev · D58 fixed meter weights · D59 repo-ready folder deliverable, assets dropped · D60 spec-first build order · D61 NOTE: line syntax · D62 WAIVED (branding) · D63 RESOLVED (meter weights) · D64 freeze waiver · D65 meter weights fixed · D66 pure preference exception · D67 no taste delegation · D68 ambiguous affirmations ask · D69 INHERITED expanded · D70 short final round · D71 assets dropped · D72 plugin manifests allowed · D73 skipped questions and meter reasons.
 
 ## 8. Acceptance Criteria (D38)
 
