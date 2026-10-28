@@ -9,6 +9,7 @@ Status: FROZEN (Round 3 fixpoint; post-freeze corrections D66-D69)
 Completeness history: R1 63% → R2 90% → R3 97% (fixpoint)
 
 Format: `D<nn> [STATUS] decision — source: Q<n>, round <r>`
+Historical entries use `— Q<n>, R<r>`; new entries use the format above.
 Post-freeze corrections cite the Oracle instruction instead of a question number.
 Statuses: DECIDED (Oracle chose), DELEGATED (Oracle accepted the expert default or "whatever is best" on a decision question, with rationale; pure taste cannot be delegated), INFERRED (resolved from seed evidence), INHERITED (from standing repo constraints, existing repo documents, or a derived concern-group table), OPEN (unresolved).
 
