@@ -135,7 +135,7 @@ This writes `dist/artifact-spec.skill` with `SKILL.md` at the archive root (Clau
 | File | What it is |
 |---|---|
 | `spec.md` | The normative contract: goals, non-goals, data model, behavior rules, error matrix, architecture, acceptance criteria, performance targets. Header carries status (DRAFT / REVIEW / FROZEN) and a revision counter. |
-| `decisions.md` | Append-only log of every decision with its status: DECIDED (you chose), DELEGATED (you accepted the expert default, rationale recorded), INFERRED (resolved from your seed, evidence cited), INHERITED (from your repo's standing constraints), OPEN (unresolved). |
+| `decisions.md` | Append-only log of every decision with its status: DECIDED (you chose), DELEGATED (you accepted the expert default on a decision question, rationale recorded; pure taste cannot be delegated), INFERRED (resolved from your seed, evidence cited), INHERITED (from standing constraints, existing repo documents, or a derived concern-group table), OPEN (unresolved). |
 | `open-questions.md` | Every unresolved item and why it blocks. Empty this before freeze, or waive explicitly. |
 
 ## Review Loop
@@ -144,7 +144,7 @@ Add a line beginning `NOTE:` under any statement in `spec.md`. The skill enumera
 
 ## Case Study
 
-The skill specified itself. Version 0.1.0's specification was produced by this exact loop in a single session: 60 answered questions across 3 rounds (20 / 30 / 10), completeness tracked 63% to 90% to 97% at the fixpoint, 65 logged decisions, 2 OPEN items resolved or waived at freeze. The self-hosted case study is the evidence base for the method's claims about human time and decision volume.
+The skill specified itself. Version 0.1.0's specification was produced by this exact loop in a single session: 60 answered questions across 3 rounds (20 / 30 / 10), completeness tracked 63% to 90% to 97% at the fixpoint, 65 logged decisions at freeze (69 after the v0.1.1 corrections), 2 OPEN items resolved or waived at freeze. The self-hosted case study is the evidence base for the method's claims about human time and decision volume.
 
 ## Scope
 

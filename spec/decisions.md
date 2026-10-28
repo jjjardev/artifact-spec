@@ -2,11 +2,15 @@
 
 Project: artifact-spec (a SKILL.md agent skill that produces spec.md)
 Author: jjjardev
-Status: FROZEN (Round 3 fixpoint)
+Started: 2026-10-27
+Skill version: 0.1.1
+Revision: 3
+Status: FROZEN (Round 3 fixpoint; post-freeze corrections D66-D69)
 Completeness history: R1 63% → R2 90% → R3 97% (fixpoint)
 
 Format: `D<nn> [STATUS] decision — source: Q<n>, round <r>`
-Statuses: DECIDED (Oracle chose), DELEGATED (Oracle accepted expert default with rationale), INFERRED (resolved from seed evidence), INHERITED (from standing repo constraints), OPEN (unresolved).
+Post-freeze corrections cite the Oracle instruction instead of a question number.
+Statuses: DECIDED (Oracle chose), DELEGATED (Oracle accepted the expert default or "whatever is best" on a decision question, with rationale; pure taste cannot be delegated), INFERRED (resolved from seed evidence), INHERITED (from standing repo constraints, existing repo documents, or a derived concern-group table), OPEN (unresolved).
 
 ## Round 1
 
@@ -88,4 +92,11 @@ Statuses: DECIDED (Oracle chose), DELEGATED (Oracle accepted expert default with
 - D64 [DECIDED] Freeze waiver: OQ-1 (public branding, D62) is waived for v1 per D50's deferral of all listing and branding work; it blocks no implementation. Oracle instruction "now create the skill and stuff" recorded as the freeze authorization. — source: Oracle, freeze turn
 - D65 [DECIDED] Meter weights fixed in references/question-taxonomy.md: data model 1.4, privacy 1.3, security 1.3, error/failure 1.3, usage 1.2, platform 1.0, file behavior 1.0, UI 0.9, performance and observability 0.8, distribution/future-proofing 0.7. Resolves OQ-2 (D63). — source: implementation against D58, D63
 
-Status: FROZEN. Spec revision 2. Zero OPEN items.
+## Post-freeze corrections (2026-10-28, v0.1.1)
+
+- D66 [DECIDED] Forced choice with exactly one expert default applies to decision questions only; pure preference questions (naming, color, taste) present neutral options with no default, and the Oracle's choice is logged as DECIDED. — clarifies D31; source: Oracle, post-freeze correction
+- D67 [DECIDED] Pure taste cannot be DELEGATED; on a recommendation request, the Scribe hands the decision back instead of recommending or accepting delegation. — clarifies D8, D43; source: Oracle, post-freeze correction
+- D68 [DECIDED] Sloppy affirmations confirm only a single visible expert default; if no default or multiple defaults were on screen, the Scribe MUST ask. — clarifies D41; source: Oracle, post-freeze correction
+- D69 [DECIDED] INHERITED covers standing constraints, existing repo documents, and derived concern-group tables, with the source cited. — clarifies D45; source: Oracle, post-freeze correction
+
+Status: FROZEN. Spec revision 3. Zero OPEN items. Post-freeze corrections D66-D69 applied.

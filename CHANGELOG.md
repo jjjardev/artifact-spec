@@ -14,6 +14,7 @@ All notable changes to this skill are documented here. Format based on Keep a Ch
 - Sloppy affirmations confirm only a single visible default; ambiguous batches ask.
 - `INHERITED` now covers derived concern-group tables, matching `question-taxonomy.md`.
 - Chat and skill decision statuses, delegation rules, and the completeness meter are aligned.
+- Self-hosted spec and decision log updated to v0.1.1 with post-freeze corrections D66-D69.
 
 ## [0.1.0] - 2026-10-27
 
