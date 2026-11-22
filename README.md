@@ -37,6 +37,24 @@ The design principles:
 5. **The spec is written for a machine.** RFC 2119 normative statements, decision-number traceability, testable acceptance criteria, a reader's guide for the Builder agent that implements it.
 6. **Drafting may not manufacture decisions.** Gaps found at draft time become OPEN markers, and freezing with OPEN items requires an explicit recorded waiver.
 
+## Relation to The Artifact Method
+
+artifact-spec is **Stage 0 (Elicitation) and Stage 1 (Contract)** of
+[The Artifact Method](https://github.com/smolfiddle/the-artifact-method) (TAM).
+Run it first: seed the idea, answer the forced-choice rounds until fixpoint,
+clear the `NOTE:` annotations, and freeze. Its three outputs — `spec/spec.md`,
+`spec/decisions.md`, `spec/open-questions.md` — are the frozen contract that
+the `the-artifact-method` skill consumes from Stage 2 (one-shot build) onward.
+
+Both skills use the same freeze rule: the contract is frozen before any build
+starts, with no OPEN questions unless each has a recorded waiver. There is no
+post-build-freeze mode in either skill. Amendments after freeze are deliberate,
+attributed decisions handled by TAM's fix loop, not permission to build against
+a draft.
+
+For a no-install Stage 0, [`artifact-spec-chat.prompt.md`](artifact-spec-chat.prompt.md)
+produces the same three artifacts in chat form.
+
 ## Install
 
 The installable skill lives at `skills/artifact-spec/`: `SKILL.md`, `references/`, and nothing else. The repo root holds the README, license, self-hosted spec, chat prompt, plugin manifests, and release scripts. Install the inner folder, not the repo root.

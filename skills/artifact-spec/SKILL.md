@@ -5,7 +5,7 @@ license: MIT
 compatibility: OpenCode-first; also works in Claude Code, Codex, Cursor, and any Agent Skills host. Requires file read/write; no network.
 metadata:
   author: jjjardev
-  version: 0.1.2
+  version: 0.1.3
 ---
 
 # artifact-spec
@@ -125,6 +125,8 @@ The Oracle may freeze only when `open-questions.md` is empty, or with an explici
 
 1. Set spec status to FROZEN with the final revision number.
 2. Print the handoff line for the Builder: the spec path, the decisions log path, and the rule that implementation MUST conform or raise a spec query citing a decision number.
+
+Handoff (informational): when used as Stage 0/1 of The Artifact Method, this FROZEN spec plus its decision log and open-question list are the contract consumed by the `the-artifact-method` skill from Stage 2 onward. TAM freezes before the build; there is no post-build-freeze mode in either skill.
 
 After FROZEN, the skill's work is done. Do not implement. Do not scaffold. Stop.
 

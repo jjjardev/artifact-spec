@@ -2,6 +2,15 @@
 
 All notable changes to this skill are documented here. Format based on Keep a Changelog; versioning is semantic.
 
+## [0.1.3] - 2026-11-22
+
+### Added
+- README: "Relation to The Artifact Method" — artifact-spec is Stage 0/1 of TAM; its three outputs are the frozen contract consumed from TAM Stage 2 onward.
+- SKILL.md Freeze Gate: informational handoff note naming `the-artifact-method` and confirming both skills freeze before the build (no post-build-freeze mode).
+
+### Notes
+- Documentation-only patch. The interview protocol, outputs, and decision history are unchanged.
+
 ## [0.1.2] - 2026-10-28
 
 ### Added
