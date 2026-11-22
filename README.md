@@ -40,7 +40,7 @@ The design principles:
 ## Relation to The Artifact Method
 
 artifact-spec is **Stage 0 (Elicitation) and Stage 1 (Contract)** of
-[The Artifact Method](https://github.com/smolfiddle/the-artifact-method) (TAM).
+The Artifact Method (TAM).
 Run it first: seed the idea, answer the forced-choice rounds until fixpoint,
 clear the `NOTE:` annotations, and freeze. Its three outputs — `spec/spec.md`,
 `spec/decisions.md`, `spec/open-questions.md` — are the frozen contract that
